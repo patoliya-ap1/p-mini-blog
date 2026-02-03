@@ -1,22 +1,27 @@
-import { Formik, Form, Field, ErrorMessage } from "formik";
-import { blogSchema } from "../Schema/blogSchema";
-import { useBloggingContext } from "../Context/BloggingContext/BloggingContext";
-import { useState } from "react";
+import { Formik, Form, Field, ErrorMessage } from 'formik'
+import { blogSchema } from '../Schema/blogSchema'
+import { useBloggingContext } from '../Context/BloggingContext/BloggingContext'
+import { useState } from 'react'
 
 const CreateBlog = () => {
   const {
     values: { userInfo },
     addBlog,
-  } = useBloggingContext();
+  } = useBloggingContext()
 
-  const [blogState, setBlogState] = useState(false);
+  const [blogState, setBlogState] = useState(false)
 
   const handleSubmitPost = (values, { resetForm }) => {
-    const newBlog = { id: Date.now(), user: userInfo.email, ...values };
-    addBlog(newBlog);
-    resetForm();
-    setBlogState(true);
-  };
+    const newBlog = {
+      id: Date.now(),
+      user: userInfo.email,
+      ...values,
+      created_at: Date.now(),
+    }
+    addBlog(newBlog)
+    resetForm()
+    setBlogState(true)
+  }
 
   return (
     <div className="w-full">
@@ -24,9 +29,9 @@ const CreateBlog = () => {
       <div className="mt-3">
         <Formik
           initialValues={{
-            title: "",
-            category: "",
-            content: "",
+            title: '',
+            category: '',
+            content: '',
           }}
           validationSchema={blogSchema}
           onSubmit={handleSubmitPost}
@@ -118,6 +123,6 @@ const CreateBlog = () => {
         {blogState && <p className="text-green-600">Blog added successfully</p>}
       </div>
     </div>
-  );
-};
-export default CreateBlog;
+  )
+}
+export default CreateBlog

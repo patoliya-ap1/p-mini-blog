@@ -17,33 +17,40 @@ const BlogDetails = () => {
     return blog.category == category && blogId != id
   })
 
+  const formatDate = new Date(blog.created_at).toDateString('default', {
+    month: 'short',
+  })
+
   return (
     <div>
       <h2 className="text-2xl text-slate-700">{blog.title}</h2>
       <div className="text-slate-600 flex flex-wrap space-x-3">
         <p>Author: {author}</p>
         <p className="text">Category: {blog.category}</p>
-        <p className="text">Post Date: {blog.category}</p>
+        <p className="text">Post Date: {formatDate}</p>
       </div>
       <div className="mt-5 text-slate-700">
-        <p>{blog.content}</p>
+        <pre className="whitespace-pre-wrap">{blog.content}</pre>
       </div>
       <div className="mt-5">
         <p>Related Post</p>
         <div className="grid md:grid-cols-2 gap-3">
           {relatedPost.length > 0 &&
-            relatedPost.map(({ id, title, content, category, user }) => {
-              return (
-                <BlogCard
-                  key={id}
-                  id={id}
-                  title={title}
-                  content={content}
-                  category={category}
-                  user={user}
-                />
-              )
-            })}
+            relatedPost.map(
+              ({ id, title, content, category, user, created_at }) => {
+                return (
+                  <BlogCard
+                    key={id}
+                    id={id}
+                    title={title}
+                    content={content}
+                    category={category}
+                    user={user}
+                    created_at={created_at}
+                  />
+                )
+              }
+            )}
         </div>
       </div>
     </div>

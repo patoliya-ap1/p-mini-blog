@@ -1,6 +1,6 @@
-import { ErrorBoundary } from "react-error-boundary";
-import BlogList from "../Component/BlogList";
-import ErrorFallback from "../Component/ErrorFallback";
+import { ErrorBoundary } from 'react-error-boundary'
+import BlogList from '../Component/BlogList'
+import ErrorFallback from '../Component/ErrorFallback'
 
 const Blog = () => {
   return (
@@ -9,6 +9,6 @@ const Blog = () => {
         <BlogList />
       </ErrorBoundary>
     </>
-  );
-};
-export default Blog;
+  )
+}
+export default Blog

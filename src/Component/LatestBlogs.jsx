@@ -1,14 +1,14 @@
-import { NavLink } from "react-router-dom";
-import { useBloggingContext } from "../Context/BloggingContext/BloggingContext";
-import BlogCard from "./BlogCard";
-import MessageContainer from "./MessageContaner";
+import { NavLink } from 'react-router-dom'
+import { useBloggingContext } from '../Context/BloggingContext/BloggingContext'
+import BlogCard from './BlogCard'
+import MessageContainer from './MessageContaner'
 
 const LatestBlogs = () => {
   const {
     values: { blogs },
-  } = useBloggingContext();
+  } = useBloggingContext()
 
-  console.log(blogs);
+  console.log(blogs)
 
   return (
     <div>
@@ -18,20 +18,23 @@ const LatestBlogs = () => {
       )}
       <div className="lg:grid grid-cols-2 gap-3 ">
         {blogs?.length > 0 &&
-          blogs?.slice(0, 4).map(({ id, title, content, category, user }) => {
-            return (
-              <BlogCard
-                key={id}
-                id={id}
-                title={title}
-                content={content}
-                category={category}
-                user={user}
-              />
-            );
-          })}
+          blogs
+            ?.slice(0, 4)
+            .map(({ id, title, content, category, user, created_at }) => {
+              return (
+                <BlogCard
+                  key={id}
+                  id={id}
+                  title={title}
+                  content={content}
+                  category={category}
+                  user={user}
+                  created_at={created_at}
+                />
+              )
+            })}
       </div>
     </div>
-  );
-};
-export default LatestBlogs;
+  )
+}
+export default LatestBlogs

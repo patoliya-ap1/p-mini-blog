@@ -2,12 +2,14 @@ import { useMemo, useState } from 'react'
 import BlogCard from '../Component/BlogCard'
 import MessageContainer from '../Component/MessageContaner'
 import { useBloggingContext } from '../Context/BloggingContext/BloggingContext'
-import { FaPlusCircle } from 'react-icons/fa'
+import { FaDrumSteelpan, FaPlusCircle } from 'react-icons/fa'
 import { NavLink } from 'react-router-dom'
 const BlogList = () => {
   const {
     values: { blogs },
   } = useBloggingContext()
+
+  console.log(blogs)
 
   const [searchInput, setSearchInput] = useState('')
   const [categoryInput, setCategoryInput] = useState('')
@@ -65,23 +67,33 @@ const BlogList = () => {
         </div>
       </div>
 
+      {blogs.length > 0 && categoryFilter.length == 0 && (
+        <MessageContainer
+          message="Blog not found with your selected Filter or Search"
+          type="error"
+        />
+      )}
+
       {blogs?.length === 0 && (
         <MessageContainer message="Please add at least one Blog" />
       )}
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-2">
-        {categoryFilter?.map(({ id, title, content, category, user }) => {
-          return (
-            <BlogCard
-              key={id}
-              id={id}
-              title={title}
-              content={content}
-              category={category}
-              user={user}
-            />
-          )
-        })}
+        {categoryFilter?.map(
+          ({ id, title, content, category, user, created_at }) => {
+            return (
+              <BlogCard
+                key={id}
+                id={id}
+                title={title}
+                content={content}
+                category={category}
+                user={user}
+                created_at={created_at}
+              />
+            )
+          }
+        )}
       </div>
     </div>
   )

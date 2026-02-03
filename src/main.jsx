@@ -1,22 +1,22 @@
-import { StrictMode } from "react";
-import { createRoot } from "react-dom/client";
-import "./index.css";
-import App from "./App.jsx";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import Home from "./Pages/Home.jsx";
-import Blog from "./Pages/Blog.jsx";
-import About from "./Pages/About.jsx";
-import BloggingContextProvider from "./Context/BloggingContext/BloggingContextProvider.jsx";
-import CreateBlog from "./Component/CreateBlog.jsx";
-import UpdateBlog from "./Component/UpdateBlog.jsx";
-import ProtectedRoute from "./Component/ProtectedRoute.jsx";
-import Login from "./Pages/Login.jsx";
-import LoggedInProtectedRoute from "./Component/LoggedInProtectedRoute.jsx";
-import BlogDetails from "./Component/BlogDetails.jsx";
+import { StrictMode } from 'react'
+import { createRoot } from 'react-dom/client'
+import './index.css'
+import App from './App.jsx'
+import { createBrowserRouter, RouterProvider } from 'react-router-dom'
+import Home from './Pages/Home.jsx'
+import Blog from './Pages/Blog.jsx'
+import About from './Pages/About.jsx'
+import BloggingContextProvider from './Context/BloggingContext/BloggingContextProvider.jsx'
+import CreateBlog from './Component/CreateBlog.jsx'
+import UpdateBlog from './Component/UpdateBlog.jsx'
+import ProtectedRoute from './Component/ProtectedRoute.jsx'
+import Login from './Pages/Login.jsx'
+import LoggedInProtectedRoute from './Component/LoggedInProtectedRoute.jsx'
+import BlogDetails from './Component/BlogDetails.jsx'
 
 const route = createBrowserRouter([
   {
-    path: "/",
+    path: '/',
     element: <App />,
     children: [
       {
@@ -28,7 +28,7 @@ const route = createBrowserRouter([
         ),
       },
       {
-        path: "/login",
+        path: '/login',
         element: (
           <LoggedInProtectedRoute>
             <Login />
@@ -36,7 +36,7 @@ const route = createBrowserRouter([
         ),
       },
       {
-        path: "blog",
+        path: 'blog',
         element: (
           <ProtectedRoute>
             <Blog />
@@ -44,7 +44,7 @@ const route = createBrowserRouter([
         ),
       },
       {
-        path: "blogDetails/:blogId",
+        path: 'blogDetails/:blogId',
         element: (
           <ProtectedRoute>
             <BlogDetails />
@@ -52,7 +52,7 @@ const route = createBrowserRouter([
         ),
       },
       {
-        path: "about",
+        path: 'about',
         element: (
           <ProtectedRoute>
             <About />
@@ -60,7 +60,7 @@ const route = createBrowserRouter([
         ),
       },
       {
-        path: "create-blog",
+        path: 'create-blog',
         element: (
           <ProtectedRoute>
             <CreateBlog />
@@ -68,7 +68,7 @@ const route = createBrowserRouter([
         ),
       },
       {
-        path: "update-blog",
+        path: 'update-blog',
         element: (
           <ProtectedRoute>
             <UpdateBlog />
@@ -77,12 +77,10 @@ const route = createBrowserRouter([
       },
     ],
   },
-]);
+])
 
-createRoot(document.getElementById("root")).render(
-  <StrictMode>
-    <BloggingContextProvider>
-      <RouterProvider router={route} />
-    </BloggingContextProvider>
-  </StrictMode>,
-);
+createRoot(document.getElementById('root')).render(
+  <BloggingContextProvider>
+    <RouterProvider router={route} />
+  </BloggingContextProvider>
+)
