@@ -1,6 +1,7 @@
 import { useParams } from 'react-router-dom'
 import { useBloggingContext } from '../Context/BloggingContext/BloggingContext'
 import BlogCard from './BlogCard'
+import MessageContainer from './MessageContaner'
 
 const BlogDetails = () => {
   const { blogId } = useParams()
@@ -27,14 +28,23 @@ const BlogDetails = () => {
       <div className="text-slate-600 flex flex-wrap space-x-3">
         <p>Author: {author}</p>
         <p className="text">Category: {blog.category}</p>
-        <p className="text">Post Date: {formatDate}</p>
+        <p className="text">Posted Date: {formatDate}</p>
       </div>
       <div className="mt-5 text-slate-700">
-        <pre className="whitespace-pre-wrap">{blog.content}</pre>
+        <pre className="whitespace-pre-wrap font-sans">{blog.content}</pre>
       </div>
       <div className="mt-5">
-        <p>Related Post</p>
+        <p>Related Blogs</p>
         <div className="grid md:grid-cols-2 gap-3">
+          {blogs.length > 0 && relatedPost.length == 0 && (
+            <div className="col-span-2">
+              <MessageContainer
+                message="No related blog for this category"
+                type="message"
+              />
+            </div>
+          )}
+
           {relatedPost.length > 0 &&
             relatedPost.map(
               ({ id, title, content, category, user, created_at }) => {

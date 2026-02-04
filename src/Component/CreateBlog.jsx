@@ -120,7 +120,9 @@ const CreateBlog = () => {
             </Form>
           )}
         </Formik>
-        {blogState && <p className="text-green-600">Blog added successfully</p>}
+        {blogState && (
+          <p className="text-green-600 mt-2">Blog added successfully</p>
+        )}
       </div>
     </div>
   )

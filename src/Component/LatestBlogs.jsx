@@ -19,7 +19,7 @@ const LatestBlogs = () => {
       <div className="lg:grid grid-cols-2 gap-3 ">
         {blogs?.length > 0 &&
           blogs
-            ?.slice(0, 4)
+            ?.slice(0, 6)
             .map(({ id, title, content, category, user, created_at }) => {
               return (
                 <BlogCard

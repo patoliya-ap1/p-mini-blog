@@ -2,7 +2,7 @@ import { useMemo, useState } from 'react'
 import BlogCard from '../Component/BlogCard'
 import MessageContainer from '../Component/MessageContaner'
 import { useBloggingContext } from '../Context/BloggingContext/BloggingContext'
-import { FaDrumSteelpan, FaPlusCircle } from 'react-icons/fa'
+import { FaPlusCircle } from 'react-icons/fa'
 import { NavLink } from 'react-router-dom'
 const BlogList = () => {
   const {
@@ -33,16 +33,17 @@ const BlogList = () => {
     <div>
       <h2 className="mb-2">Blog</h2>
 
+      <div className="sticky top-17 z-20 mb-2 bg-white">
+        <input
+          type="text"
+          placeholder="Search blog"
+          className="p-3 shadow-md outline-none w-full"
+          value={searchInput}
+          onChange={(e) => setSearchInput(e.target.value)}
+        />
+      </div>
+
       <div className="mb-4 flex flex-wrap items-center gap-2">
-        <div>
-          <input
-            type="text"
-            placeholder="Search blog"
-            className="p-3 shadow-md outline-none"
-            value={searchInput}
-            onChange={(e) => setSearchInput(e.target.value)}
-          />
-        </div>
         <div>
           <select
             className="p-3 shadow-md"
@@ -60,7 +61,7 @@ const BlogList = () => {
         <div>
           <NavLink
             to="/create-blog"
-            className="bg-slate-700 p-3 text-slate-200 rounded-md flex items-center space-x-1"
+            className="bg-slate-700 p-3 text-slate-200 rounded-md flex items-center space-x-1 hover:bg-slate-800"
           >
             <span>Create Blog</span> <FaPlusCircle />
           </NavLink>
